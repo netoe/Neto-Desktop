@@ -1,0 +1,14 @@
+{
+  "name": "neto-desktop",
+  "version": "0.1.0",
+  "description": "Generic types are designed to reduce the codes duplications.",
+  "main": "index.js",
+  "scripts": {
+	"build": "tsc",
+	"run-demo": "node ts-dist/demo",
+    "start": "npm run build && npm run run-demo",
+	"test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fisher",
+  "license": "ISC"
+}
