@@ -2,8 +2,8 @@
 
 console.log('Loaded main.js', +new Date());
 
-import {doShowDialogToReviewAndPlan} from './actions/review-and-plan.js';
-import {mAppMenu} from './libs/menu.js';
+import {mAppMenu} from './app/menu.js';
+import {doShowDialogToReviewAndPlan} from './libs/review-and-plan.js';
 import {doStartBackgroundService} from './services/background-schedules.js';
 
 console.log('main.js', mAppMenu, +new Date());

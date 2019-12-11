@@ -1,6 +1,6 @@
 // Show dialog to review the past hour and plan for the future hour.
 
-import {doNotifyAbout} from '../libs/AppNotifier.js';
+import {doNotifyAbout} from './app-notifier.js';
 import {GRS} from '../resources/configures.js';
 import {AppPages} from '../resources/resources.js';
 import {getAppDialogWindowOptions} from '../resources/win-dialog-options.js';

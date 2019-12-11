@@ -1,8 +1,8 @@
 //
 
-import {doAsyncPlayBackgroundAudio, SOUNDS_TYPE} from '../actions/play-audio.js';
-import {doShowDialogToReviewAndPlan} from '../actions/review-and-plan.js';
-import {doNotifyAbout} from '../libs/AppNotifier.js';
+import {doNotifyAbout} from '../libs/app-notifier.js';
+import {doAsyncPlayBackgroundAudio, SOUNDS_TYPE} from '../libs/audio-player.js';
+import {doShowDialogToReviewAndPlan} from '../libs/review-and-plan.js';
 import {Schedule} from '../scheduler/schedule.js';
 import {CronTimer} from '../scheduler/timer/cron-timer.js';
 

@@ -1,7 +1,7 @@
 //
 
-import {doPlayAllAvailableSound} from '../actions/play-audio.js';
 import {mDemoSchedules} from '../demo/schedules.js';
+import {doPlayAllAvailableSound} from '../libs/audio-player.js';
 import {Scheduler} from '../scheduler/scheduler.js';
 
 const scheduler = new Scheduler(mDemoSchedules);
