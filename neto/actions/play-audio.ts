@@ -8,10 +8,11 @@ export const SOUNDS_TYPE = {
 	ERROR: 'error',
 };
 
-export const doPlayBackgroundAudio = (type: string = SOUNDS_TYPE.REGULAR): Promise<void> => {
+export const doPlayBackgroundAudio = (type: string = SOUNDS_TYPE.REGULAR): Promise<void> => new Promise((resolve: () => any) => {
 	const audio = new Audio('assets/sounds/noti-' + type + '.mp3');
-	return audio.play();
-};
+	audio.onended = resolve;
+	audio.play();
+});
 
 export const doPlayAllAvailableSound = async () => {
 	const values: string[] = Object.values(SOUNDS_TYPE);
