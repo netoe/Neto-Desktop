@@ -8,7 +8,7 @@ import {CronTimer} from '../scheduler/timer/cron-timer.js';
 const schedules = [
 	new Schedule('Hourly Timer', new CronTimer('0'), () => {
 		console.log('Hourly timer,,,,');
-		doAsyncPlayBackgroundAudio(SOUNDS_TYPE.ERROR);
+		doAsyncPlayBackgroundAudio(SOUNDS_TYPE.ERROR, 2);
 	}),
 	new Schedule('Half-Hour Timer', new CronTimer('30'), () => {
 		console.log('Half-Hourly timer,,,,');
@@ -16,7 +16,7 @@ const schedules = [
 	}),
 	new Schedule('25/55-Minute Timer', new CronTimer('25,55'), () => {
 		console.log('25/55-Minute Timer,,,,');
-		doAsyncPlayBackgroundAudio(SOUNDS_TYPE.IMPORTANT);
+		doAsyncPlayBackgroundAudio(SOUNDS_TYPE.IMPORTANT, 2);
 	}),
 	new Schedule('A5-Minute Timer', new CronTimer('5,15,35,45'), () => {
 		console.log('A5-Minute Timer,,,,');

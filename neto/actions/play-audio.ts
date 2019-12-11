@@ -8,9 +8,22 @@ export const SOUNDS_TYPE = {
 	ERROR: 'error',
 };
 
-export const doPlayBackgroundAudio = (type: string = SOUNDS_TYPE.REGULAR): Promise<void> => new Promise((resolve: () => any) => {
+export const doPlayBackgroundAudio = (type: string = SOUNDS_TYPE.REGULAR, times: number = 1): Promise<void> => new Promise((resolve: () => any) => {
 	const audio = new Audio('assets/sounds/noti-' + type + '.mp3');
-	audio.onended = resolve;
+	if (times <= 1) {
+		audio.onended = resolve;
+		audio.play();
+		return;
+	}
+	// Play the audio continuous multiple times.
+	let overflow = 1;
+	audio.onended = () => {
+		times--;
+		if (times <= 0) {return resolve();}
+		// Prevent the potential infinite loop.
+		if (overflow++ > 20) {return resolve();}
+		audio.play();
+	};
 	audio.play();
 });
 
@@ -22,8 +35,8 @@ export const doPlayAllAvailableSound = async () => {
 	return null;
 };
 
-export const doAsyncPlayBackgroundAudio = (type: string = SOUNDS_TYPE.REGULAR) => {
-	doPlayBackgroundAudio(type).then(
+export const doAsyncPlayBackgroundAudio = (type: string = SOUNDS_TYPE.REGULAR, times: number = 1) => {
+	doPlayBackgroundAudio(type, times).then(
 		() => null,
 	).catch(
 		(ex) => console.error('failed to play audio(%s):', type, ex),
