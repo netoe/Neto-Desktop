@@ -1,6 +1,6 @@
 //
 
-import {IRange, IRepeater, ISchedule, ITimer} from './typed/schedules';
+import {IRange, IRepeater, ISchedule, ITimer} from './typed/schedules.js';
 
 export class Schedule implements ISchedule {
 	name: string;

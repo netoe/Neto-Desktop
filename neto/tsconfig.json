@@ -1,36 +1,38 @@
 {
   "compilerOptions": {
-	"baseUrl": ".",
-	"outDir": ".",
-	"module": "esnext",
-	"target": "es6",
-	"lib": [
-	  "esnext",
-	  "dom"
-	],
-	"sourceMap": false,
-	"allowJs": false,
-	// @see https://github.com/Microsoft/TypeScript-React-Starter/issues/8
-	"allowSyntheticDefaultImports": true,
-	"jsx": "react",
-	"moduleResolution": "node",
-	"rootDir": ".",
-	"forceConsistentCasingInFileNames": true,
-	"noImplicitReturns": true,
-	"noImplicitThis": true,
-	"noImplicitAny": true,
-	"importHelpers": true,
-	"strictNullChecks": true,
-	"suppressImplicitAnyIndexErrors": true,
-	"noUnusedLocals": false
+    "baseUrl": ".",
+    "outDir": ".",
+    "module": "esnext",
+    // Keep the async/await out there untouched.
+    // @see https://stackoverflow.com/questions/39919190/compile-typescript-without-transpiling-async-functions
+    "target": "es2017",
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "sourceMap": false,
+    "allowJs": false,
+    // @see https://github.com/Microsoft/TypeScript-React-Starter/issues/8
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "rootDir": ".",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "importHelpers": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": false
   },
   "awesomeTypescriptLoaderOptions": {
-	"useBabel": true,
-	"babelCore": "@babel/core"
+    "useBabel": true,
+    "babelCore": "@babel/core"
   },
   "exclude": [
-	"node_modules",
-	"build",
-	"dist"
+    "node_modules",
+    "build",
+    "dist"
   ]
 }

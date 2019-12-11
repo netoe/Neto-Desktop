@@ -1,6 +1,6 @@
 //
 
-import {ISchedule} from './typed/schedules';
+import {ISchedule} from './typed/schedules.js';
 
 interface IScheduler {
 	schedules: any[];

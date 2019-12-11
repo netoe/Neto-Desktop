@@ -3,6 +3,7 @@
 console.log('Loaded main.js', +new Date());
 
 import {mAppMenu} from './libs/menu.js';
+import {doStartBackgroundService} from './services/background-schedules.js';
 
 console.log('main.js', mAppMenu, +new Date());
 
@@ -15,3 +16,4 @@ document.body.addEventListener('contextmenu', function (ev) {
 	return false;
 }, false);
 
+doStartBackgroundService();

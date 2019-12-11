@@ -1,7 +1,7 @@
 //
 
-import {ITimer} from '../typed/schedules';
-import {CronField, isCronFieldMatched, newCronField} from './cron-field';
+import {ITimer} from '../typed/schedules.js';
+import {CronField, isCronFieldMatched, newCronField} from './cron-field.js';
 
 export class CronTimer implements ITimer {
 	rule: string;
