@@ -2,6 +2,7 @@
 
 console.log('Loaded main.js', +new Date());
 
+import {doShowDialogToReviewAndPlan} from './actions/review-and-plan.js';
 import {mAppMenu} from './libs/menu.js';
 import {doStartBackgroundService} from './services/background-schedules.js';
 
@@ -17,3 +18,13 @@ document.body.addEventListener('contextmenu', function (ev) {
 }, false);
 
 doStartBackgroundService();
+
+const main = () => {
+	const button = document.getElementById('btn-dialog');
+	button ? button.onclick = () => {
+		doShowDialogToReviewAndPlan().then((res) => {
+			console.log('Finished with', res);
+		}).catch(ex => console.error('Failed with', ex));
+	} : undefined;
+};
+main();
