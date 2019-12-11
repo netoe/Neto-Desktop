@@ -1,0 +1,22 @@
+{
+  "name": "neto-desktop",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "build": "tsc",
+    "run-app": "/opt/nwjsx/nw .",
+    "start": "npm run build && npm run run-app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "window": {
+    "title": "Neto Desktop",
+    "icon": "assets/images/icon.png",
+    "width": 1080,
+    "height": 720,
+    "as_desktop": true,
+    "show_in_taskbar": false
+  },
+  "author": "Fisher",
+  "license": "ISC"
+}
