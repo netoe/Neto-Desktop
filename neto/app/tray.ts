@@ -23,7 +23,11 @@ const togglePrimaryWindow = (action?: boolean) => {
 };
 
 const doExitApp = () => {
-	if (tray) {tray.remove();}
+	// Exiting the application only when the tray is null.
+	if (tray) {
+		tray.remove();
+		tray = null;
+	}
 	win.close();
 };
 
@@ -59,7 +63,10 @@ if (_conf.useTrayOnly()) {
 
 // @see http://docs.nwjs.io/en/latest/References/Window/#wincloseforce
 win.on('close', () => {
-	win.hide(); // Pretend to be closed already
+	// Pretend to be closed already
+	togglePrimaryWindow(false);
+	if (tray) {return;}
+	// Exiting the application only when the tray is null.
 	console.log('Closing app...');
 	win.close(true);
 });
