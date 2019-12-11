@@ -5,7 +5,7 @@ const pages = {
 };
 
 const icons = {
-	app: 'icon.png',
+	app: 'assets/images/icon.png',
 };
 
 export const AppPages = pages;

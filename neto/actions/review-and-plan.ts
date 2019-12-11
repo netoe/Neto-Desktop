@@ -1,5 +1,6 @@
 // Show dialog to review the past hour and plan for the future hour.
 
+import {doNotifyAbout} from '../libs/AppNotifier.js';
 import {GRS} from '../resources/configures.js';
 import {AppPages} from '../resources/resources.js';
 import {getAppDialogWindowOptions} from '../resources/win-dialog-options.js';
@@ -23,13 +24,15 @@ const showDialog = (timeout: number = 5 * 60 * 1000): Promise<IDialogReviewAndPl
 	};
 	// Start a window for message.
 	nw.Window.open(AppPages.pageReviewingAndPlaning, getAppDialogWindowOptions(GRS.pageReviewingAndPlanning), (win: any) => {
-		win.on('closed', function () {
-			resolve(result);
-		});
 		console.log('Started a new page, and will be timed out in %d seconds!', Math.floor(timeout / 1000));
-		setTimeout(() => {
+		const code = setTimeout(() => {
 			win.close();
 		}, timeout);
+		win.on('closed', function () {
+			clearTimeout(code);
+			doNotifyAbout(GRS.pageReviewingAndPlanning, 'Awesome, see you later then!');
+			resolve(result);
+		});
 	});
 	// resolve(result);
 });
