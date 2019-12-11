@@ -11,8 +11,40 @@ const win: any = gui.Window.get();
 let tray: any;
 let status = new WindowStatus();
 
+const togglePrimaryWindow = (action?: boolean) => {
+	// Will hide the window, if action is false.
+	if (action === undefined ? status.isHidden() : action) {
+		win.show();
+		status.setStatus(WindowStatus.STATUS_NORMAL);
+	} else {
+		win.hide();
+		status.setStatus(WindowStatus.STATUS_HIDDEN);
+	}
+};
+
+const doExitApp = () => {
+	if (tray) {tray.remove();}
+	win.close();
+};
+
+const newTrayMenu = () => {
+	const menu = new nw.Menu();
+	[
+		// Check the current status, and show window when needed.
+		{label: 'App Home', click: () => togglePrimaryWindow()},
+		{type: 'separator'},
+		{label: 'Upgrade', click: () => alert('Hi there, the application is up-to-date!')},
+		{label: 'About', click: () => alert('Hello, from Neto Desktop')},
+		{type: 'separator'},
+		{label: 'Exit', click: doExitApp},
+	].map(options => menu.append(new nw.MenuItem(options)));
+	// {type: 'checkbox', label: 'box1'}
+	return menu;
+};
+
 const newTray = () => {
 	tray = new gui.Tray({icon: 'assets/images/icon.png'});
+	tray.menu = newTrayMenu();
 	return tray;
 };
 
@@ -21,30 +53,29 @@ if (_conf.useTrayOnly()) {
 	console.log('Setting up a permanent tray, to toggle(hide and show) the primary window later!');
 	tray.on('click', function () {
 		console.log('Clicked tray, will toggle the primary window:', status.isHidden());
-		if (status.isHidden()) {
-			win.show();
-			status.setStatus(WindowStatus.STATUS_NORMAL);
-		} else {
-			win.hide();
-			status.setStatus(WindowStatus.STATUS_HIDDEN);
-		}
+		togglePrimaryWindow();
 	});
 }
+
+// @see http://docs.nwjs.io/en/latest/References/Window/#wincloseforce
+win.on('close', () => {
+	win.hide(); // Pretend to be closed already
+	console.log('Closing app...');
+	win.close(true);
+});
 
 // Get the minimize event
 if (_conf.isDebuggingMode()) {win.showDevTools();}
 win.on('minimize', function () {
 	console.log('On minimized: hide window.', win);
-	win.hide();
-	status.setStatus(WindowStatus.STATUS_HIDDEN);
+	togglePrimaryWindow(false);
 	if (!_conf.useTrayOnly()) {
 		console.log('Setting up a temporary tray, to show primary window later!');
 		// In the normal mode, tray are removed automatically.
 		tray = newTray();
 		// Show window and remove tray when clicked
 		tray.on('click', function () {
-			win.show();
-			status.setStatus(WindowStatus.STATUS_NORMAL);
+			togglePrimaryWindow(true);
 			tray.remove();
 			tray = null;
 		});
