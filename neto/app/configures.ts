@@ -2,25 +2,29 @@
 
 const conf = {
 	debugging: true,
+	// There is always a tray for the application to show and exit.
+	// While close the window will make it hidden.
+	showInTaskbar: true,
 	// In the tray only mode, the primary window will not be shown in the task bar.
-	useTrayOnly: true,
+	// Should configure the window `"show_in_taskbar": false` in the package.json if being set true.
+	// useTrayOnly: true,
 };
 
 const isDebuggingMode = () => conf.debugging;
-const useTrayOnly = () => conf.useTrayOnly;
+const showInTaskbar = () => conf.showInTaskbar;
 
 interface IAppConfigureOptions {
 	debugging: boolean;
-	useTrayOnly: boolean;
+	showInTaskbar: boolean;
 }
 
-const setAppConfigureOptions = ({debugging, useTrayOnly}: IAppConfigureOptions) => {
+const setAppConfigureOptions = ({debugging, showInTaskbar}: IAppConfigureOptions) => {
 	if (debugging !== undefined) {conf.debugging = debugging;}
-	if (useTrayOnly !== undefined) {conf.useTrayOnly = useTrayOnly;}
+	if (showInTaskbar !== undefined) {conf.showInTaskbar = showInTaskbar;}
 };
 
 export const _conf = {
 	setAppConfigureOptions,
 	isDebuggingMode,
-	useTrayOnly,
+	showInTaskbar,
 };

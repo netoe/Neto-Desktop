@@ -52,15 +52,17 @@ const newTray = () => {
 	return tray;
 };
 
-if (_conf.useTrayOnly()) {
+const setupPermanentTray = () => {
 	const tray = newTray();
 	console.log('Setting up a permanent tray, to toggle(hide and show) the primary window later!');
 	tray.on('click', function () {
 		console.log('Clicked tray, will toggle the primary window:', status.isHidden());
 		togglePrimaryWindow();
 	});
-}
+};
+setupPermanentTray();
 
+// Do nothing on minimized.
 // @see http://docs.nwjs.io/en/latest/References/Window/#wincloseforce
 win.on('close', () => {
 	// Pretend to be closed already
@@ -71,23 +73,7 @@ win.on('close', () => {
 	win.close(true);
 });
 
-// Get the minimize event
 if (_conf.isDebuggingMode()) {win.showDevTools();}
-win.on('minimize', function () {
-	console.log('On minimized: hide window.', win);
-	togglePrimaryWindow(false);
-	if (!_conf.useTrayOnly()) {
-		console.log('Setting up a temporary tray, to show primary window later!');
-		// In the normal mode, tray are removed automatically.
-		tray = newTray();
-		// Show window and remove tray when clicked
-		tray.on('click', function () {
-			togglePrimaryWindow(true);
-			tray.remove();
-			tray = null;
-		});
-	}
-});
 
 // The tray may change.
 export const getAppTray = () => tray;
