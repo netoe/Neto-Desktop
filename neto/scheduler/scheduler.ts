@@ -3,21 +3,27 @@
 import {ISchedule} from './typed/schedules.js';
 
 interface IScheduler {
-	schedules: any[];
+	schedules?: any[];
 }
 
 export class Scheduler implements IScheduler {
-	schedules: ISchedule[];
+	schedules?: ISchedule[];
 	running: boolean;
 	verbose: boolean;
 
-	constructor(schedules: ISchedule[]) {
+	constructor(schedules?: ISchedule[]) {
 		this.schedules = schedules;
 		this.running = false;
 	}
 
+	doSetSchedulesAndStart = (schedules: ISchedule[]) => {
+		this.schedules = schedules;
+		this.doStartSchedules();
+	};
+
 	doStartSchedules = () => {
 		this.running = true;
+		if (!this.schedules) {return console.log('[%s] Not starting the scheduler because of null schedules.');}
 		console.log('[%s] Started loop checking and executing.', new Date().toString());
 		this.checkAndExecuteSchedules();
 	};
@@ -28,6 +34,7 @@ export class Scheduler implements IScheduler {
 			console.log('[%s] Stopped loop checking and executing.', now.toString());
 			return;
 		}
+		if (!this.schedules) {return console.log('[%s] Stopped the scheduler(loop checking and executing) because of null schedules.');}
 		// Check schedules and execute corresponding tasks if timer matched.
 		this.schedules.map(schedule => {
 			if (!schedule.isMatched(now)) {return;}
