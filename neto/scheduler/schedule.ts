@@ -1,5 +1,8 @@
 //
 
+import {ScheduleReceiptsManager} from '../schedulerx/ScheduleReceiptsManager.js';
+import {IAction} from './typed/actions.js';
+import {IActionReceipt, IScheduleReceipt, newScheduleReceipt} from './typed/receipts.js';
 import {IRange, IRepeater, ISchedule, ITimer} from './typed/schedules.js';
 
 export class Schedule implements ISchedule {
@@ -7,15 +10,15 @@ export class Schedule implements ISchedule {
 	enabled: boolean;
 	range: IRange;
 	timer: ITimer;
-	funcAction: Function;
+	actions: IAction[];
 	repeater: IRepeater;
 	funcRepeaterAction: Function;
 
-	constructor(name: string, timer: any, funcAction: Function) {
+	constructor(name: string, timer: any, actions: IAction[]) {
 		this.enabled = true;
 		this.name = name;
 		this.timer = timer;
-		this.funcAction = funcAction;
+		this.actions = actions;
 	}
 
 	isMatched = (d: Date): boolean => {
@@ -31,13 +34,39 @@ export class Schedule implements ISchedule {
 	};
 
 	doStart = () => {
-		this.funcAction();
-		if (!this.repeater || !this.funcRepeaterAction) {return;}
+		const started = +new Date();
+		this.doAsyncStart().then((receipts: IActionReceipt[]): IScheduleReceipt => {
+			console.log('[SUCCESS] Executed the actions of schedule(%s) at %s.', this.name, new Date().toString());
+			return newScheduleReceipt(this.name, 1, receipts, started, +new Date());
+		}).catch((ex) => {
+			console.log('[FAILURE] Executed the actions of schedule(%s) at %s.', this.name, new Date().toString());
+			return newScheduleReceipt(this.name, -1, [], started, +new Date());
+		}).then((receipt: IScheduleReceipt) => {
+			console.log('Stashing the final schedule receipt:', receipt);
+			ScheduleReceiptsManager.postScheduleReceipts(receipt).then(() => {
+				console.log('Recorded schedule receipt:', receipt);
+			}).catch((ex: any) => {
+				console.error('Failed to record schedule receipt:', ex);
+			});
+		});
+	};
+
+	doAsyncStart = async (): Promise<IActionReceipt[]> => {
+		const receipts: IActionReceipt[] = [];
+		// FIX-ME Execute the actions async or sync and records the receipts.
+		for (let i = 0; i < this.actions.length; i++) {
+			const action = this.actions[i];
+			const receipt = await action.doExecute(+new Date(), action);
+			console.log('[SUCCESS] Executed the action(%s) of schedule(%s) at %s.', action.getDescriptionString(action, receipt), this.name, new Date().toString());
+			receipts.push(receipt);
+		}
+		if (!this.repeater || !this.funcRepeaterAction) {return receipts;}
 		this.repeater.doStart((ith: number, total: number): boolean => {
 			console.log('Executed the %d(/%d)th post repeated tasks.', ith, total);
 			this.funcRepeaterAction();
 			return true;
 		});
+		return receipts;
 	};
 }
 
