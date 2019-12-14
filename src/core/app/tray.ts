@@ -36,7 +36,7 @@ const doExitApp = () => {
 	}, 1000);
 	setTimeout(() => {
 		// Show a dialog to force quit the exit, if the normal closing strategy failed.
-		const doQuitNow = prompt('Force closing after now?');
+		const doQuitNow = confirm('Force closing after now?');
 		// @see http://docs.nwjs.io/en/latest/References/App/#appquit
 		if (doQuitNow) {nw.App.quit();}
 	}, 2000);

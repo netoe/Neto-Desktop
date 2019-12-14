@@ -30,3 +30,5 @@ export const _conf = {
 	isDebuggingMode,
 	showInTaskbar,
 };
+
+export type IAppConfigures = typeof _conf;

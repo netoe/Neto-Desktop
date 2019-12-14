@@ -16,17 +16,28 @@ export interface INetoCallBackResult {
 	error?: any;
 }
 
-export const KeyNetoBridgeName = '_bzNetoClient';
+const keyBridgeNetoCallback = '_$bzBridgeNetoCallback';
 
-export interface INetoBridge {
+// The bridge to start window for result.
+export interface IBridgeNetoCallback {
 	callback: (res: INetoCallBackResult) => any;
 	partial: (res: INetoCallBackResult) => any;
 }
 
-export const NetoBridge = {
+export const BridgeNetoCallback = {
 	codes,
 	newErrorTimedOutResult: (): INetoCallBackResult => ({code: codes.TIMED_OUT, message: 'timed out'}),
 	newErrorPartialResult: (): INetoCallBackResult => ({code: codes.PARTIAL, message: 'partial result and closed'}),
 	newErrorClosedResult: (): INetoCallBackResult => ({code: codes.CLOSED, message: 'closed directly'}),
 	newSuccessiveResult: (result: object): INetoCallBackResult => ({code: codes.DONE, message: 'done', ...result}),
 };
+
+export const setNetoCallbackBridge = (bridge: IBridgeNetoCallback, theTargetGlobalWindow?: any) => {
+	if (theTargetGlobalWindow) {theTargetGlobalWindow[keyBridgeNetoCallback] = bridge;}
+	return window[keyBridgeNetoCallback] = bridge;
+};
+
+export const getNetoCallbackBridge = (): IBridgeNetoCallback | undefined => {
+	return window[keyBridgeNetoCallback];
+};
+
