@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<style>
+		/* set the overflow-x to hidden to disable the horizontal scroll disorder between transitions. */
+		html, body {margin: 0;padding: 0;overflow-x: hidden;}
+		html, body, #root-react-mount-point {height: 100%; width: 100%; overflow: hidden;}
+	</style>
 	<title>Neto Demo</title>
 </head>
 <body>
+
+<!-- For React graphic UI. -->
+<div id="root-react-mount-point"></div>
 
 <p>'Right click' here to show context menu.</p>
 
@@ -12,11 +22,8 @@
 <script>
 	console.log('[%d] Loading all scripts now.', +new Date());
 </script>
-<script src="app/configures.js" type="module"></script>
-<script src="app/status.js" type="module"></script>
-<script src="app/menu.js" type="module"></script>
-<script src="app/tray.js" type="module"></script>
-<script src="main.js" type="module"></script>
+<script src="built/core.bundle.js"></script>
+<script src="built/desktop.bundle.js"></script>
 <script>
 	console.log('[%d] Loaded all scripts.', +new Date());
 </script>

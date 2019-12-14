@@ -4,9 +4,9 @@
   "description": "Generic types are designed to reduce the codes duplications.",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "run-demo": "node ts-dist/demo",
-    "start": "npm run build && npm run run-demo",
+    "build": "webpack --config webpack.prod.js | tee -a logs/build-production_`date +%Y-%m-%d`.txt && npm run deploy",
+    "deploy": "cp dist/app.bundle.js neto/built/desktop.bundle.js && cp dist/core.bundle.js neto/built/core.bundle.js",
+    "start": "webpack-dev-server --open --config webpack.dev.js --port 1234 --hot --host 0.0.0.0",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Fisher",
