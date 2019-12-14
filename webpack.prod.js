@@ -11,6 +11,7 @@ module.exports = merge(common, {
 	entry: {
 		...common.entry,
 		core: './src/core/main.ts',
+		rap: './src/graphic/applications/AppReviewAndPlan.tsx',
 	},
 	devServer: {
 		historyApiFallback: true, /* support for react-router  */

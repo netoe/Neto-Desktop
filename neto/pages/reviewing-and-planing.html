@@ -2,20 +2,18 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<style>
+		/* set the overflow-x to hidden to disable the horizontal scroll disorder between transitions. */
+		html, body {margin: 0;padding: 0;overflow-x: hidden;}
+		html, body, #root-react-mount-point {height: 100%; width: 100%; overflow: hidden;}
+	</style>
 	<title>Reviewing and Planning &lt;/- Neto Desktop</title>
 </head>
 <body>
 
-<h1>Hello World</h1>
-
-<div>
-	<input id="id-input-reviews" type="text" name="reviews"/><br/><br/>
-	<input id="id-input-plans" type="text" name="plans"/><br/><br/>
-</div>
-
-<button id="id-btn-submit">Submit</button>
-
-<script src="reviewing-and-planing.js" type="module"></script>
+<div id="root-react-mount-point"></div>
+<script src="../built/dialog-rap.bundle.js"></script>
 
 </body>
 </html>
