@@ -1,0 +1,3 @@
+[submodule "src/graphic"]
+	path = src/graphic
+	url = https://github.com/netoe/Neto-Graphics.git
