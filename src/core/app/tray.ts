@@ -30,6 +30,16 @@ const doExitApp = () => {
 		tray = null;
 	}
 	win.close();
+	setTimeout(() => {
+		// @see http://docs.nwjs.io/en/latest/References/App/#appcloseallwindows
+		nw.App.closeAllWindows();
+	}, 1000);
+	setTimeout(() => {
+		// Show a dialog to force quit the exit, if the normal closing strategy failed.
+		const doQuitNow = prompt('Force closing after now?');
+		// @see http://docs.nwjs.io/en/latest/References/App/#appquit
+		if (doQuitNow) {nw.App.quit();}
+	}, 2000);
 };
 
 const newTrayMenu = () => {
@@ -71,7 +81,7 @@ win.on('close', () => {
 	if (tray) {return;}
 	// Exiting the application only when the tray is null.
 	console.log('Closing app...');
-	win.close(true);
+	if (win) {win.close(true);}
 });
 
 if (_conf.isDebuggingMode()) {win.showDevTools();}

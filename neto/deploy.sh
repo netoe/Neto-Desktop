@@ -6,4 +6,4 @@ dirTargetLocation="${dirTarget}/releases_${TERMINATING_TIME}"
 
 mkdir -p ${dirTargetLocation}
 
-rsync -avm --filter '- *.ts' --filter '- *.sh' --filter '- tsconfig.json' . ${dirTargetLocation}
+rsync -avm --filter '- .idea' --filter '- .gitignore' --filter '- *.ts' --filter '- *.sh' --filter '- tsconfig.json' . ${dirTargetLocation}
