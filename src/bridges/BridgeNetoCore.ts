@@ -1,6 +1,7 @@
 //
 
 import {IAppConfigures} from '../core/app/configures';
+import {IScheduleReceiptsManager} from '../core/schedulerx/ScheduleReceiptsManager';
 
 const keyBridgeNetoCore = '_$bzBridgeNetoCore';
 
@@ -8,6 +9,7 @@ export interface IBridgeNetoCore {
 	AppConfigures: IAppConfigures;
 	BackgroundService: IBackgroundService;
 	DemoAndDevelopment: IDemoAndDevelopment;
+	ScheduleReceiptsManager: IScheduleReceiptsManager;
 }
 
 export interface IBackgroundService {

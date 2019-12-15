@@ -11,6 +11,7 @@ import {_conf} from './app/configures';
 import {mAppMenu} from './app/menu';
 import {getAppTray} from './app/tray';
 import {doShowDialogToReviewAndPlan} from './libs/review-and-plan';
+import {ScheduleReceiptsManager} from './schedulerx/ScheduleReceiptsManager';
 import {doStartBackgroundService} from './services/background-schedules';
 
 console.log('main.js', mAppMenu, +new Date());
@@ -35,6 +36,7 @@ const bridge: IBridgeNetoCore = {
 	DemoAndDevelopment: {
 		showReviewAndPlanDialog: doShowDialogToReviewAndPlan,
 	},
+	ScheduleReceiptsManager,
 };
 setNetoCoreBridge(bridge);
 if (_conf.isDebuggingMode()) {console.log('Set up the neto core bridge:', bridge);}
