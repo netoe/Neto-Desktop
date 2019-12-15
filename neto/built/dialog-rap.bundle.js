@@ -1,0 +1,1 @@
+../../dist/rap.bundle.js
