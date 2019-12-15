@@ -4,12 +4,8 @@
   "description": "Generic types are designed to reduce the codes duplications.",
   "main": "index.js",
   "scripts": {
-    "deploy": "npm run deploy-core && npm run deploy-desktop && npm run deploy-dialog-rap",
-    "build": "webpack --config webpack.prod.js | tee -a logs/build-production_`date +%Y-%m-%d`.txt && npm run deploy",
+    "build": "webpack --config webpack.prod.js | tee -a logs/build-production_`date +%Y-%m-%d`.txt",
     "start": "webpack-dev-server --open --config webpack.dev.js --port 1234 --hot --host 0.0.0.0",
-    "deploy-core": "cp dist/core.bundle.js neto/built/core.bundle.js",
-    "deploy-desktop": "cp dist/app.bundle.js neto/built/desktop.bundle.js",
-    "deploy-dialog-rap": "cp dist/rap.bundle.js neto/built/dialog-rap.bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

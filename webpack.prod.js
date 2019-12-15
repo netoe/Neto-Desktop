@@ -13,6 +13,18 @@ module.exports = merge(common, {
 		core: './src/core/main.ts',
 		rap: './src/graphic/applications/AppReviewAndPlan.tsx',
 	},
+	optimization: {
+		splitChunks: {
+			// chunks: 'all',
+			cacheGroups: {
+				commons: {
+					test: /[\\/]node_modules[\\/]/,
+					name: 'vendors',
+					chunks: 'all',
+				},
+			},
+		},
+	},
 	devServer: {
 		historyApiFallback: true, /* support for react-router  */
 		contentBase: './dist',
