@@ -5,6 +5,7 @@ import {newActionPlayNotificationSound} from '../builtin-actions/notification-so
 import {SOUNDS_TYPE} from '../libs/audio-player';
 import {Schedule} from '../scheduler/schedule';
 import {CronTimer} from '../scheduler/timer/cron-timer';
+import {IAction} from '../scheduler/typed/actions';
 
 
 const schedules = [
@@ -28,6 +29,7 @@ const schedules = [
 ];
 
 export const mDemoSchedules = schedules;
+export const mDemoActions: IAction[] = schedules[0].actions;
 
 // setTimeout(() => {
 // 	scheduler.running = false;
