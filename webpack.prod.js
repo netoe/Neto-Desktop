@@ -12,6 +12,7 @@ module.exports = merge(common, {
 		...common.entry,
 		core: './src/core/main.ts',
 		rap: './src/graphic/applications/AppReviewAndPlan.tsx',
+		infraTextTailor: './src/graphic/Infra-Tools/index.tsx',
 	},
 	optimization: {
 		splitChunks: {

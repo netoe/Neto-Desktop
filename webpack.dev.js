@@ -8,6 +8,11 @@ module.exports = merge(common, {
 	mode: 'development',
 	devtool: 'source-map',
 
+	output: {
+		...common.output,
+		path: path.resolve('./temp'),
+	},
+
 	// @see https://webpack.js.org/configuration/dev-server/
 	devServer: {
 		disableHostCheck: true,

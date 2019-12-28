@@ -1,0 +1,1 @@
+../../dist/AppTextTailor.chunk.js
