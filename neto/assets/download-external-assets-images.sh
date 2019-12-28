@@ -11,6 +11,7 @@ wget -N -O icon.png https://www.iconfinder.com/icons/1553066/download/png/128
 wget -N -O traveler.png https://www.iconfinder.com/icons/4698587/download/png/128
 
 # Personal Applications
+wget -N -O dashboards.png https://www.iconfinder.com/icons/4170656/download/png/128
 wget -N -O workspace.png https://cdn2.iconfinder.com/data/icons/free-version/128/workplace-128.png
 wget -N -O schedules.png https://www.iconfinder.com/icons/5027858/download/png/128
 wget -N -O noting.png https://www.iconfinder.com/icons/1296370/download/png/128
