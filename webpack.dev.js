@@ -18,7 +18,7 @@ module.exports = merge(common, {
 		disableHostCheck: true,
 		historyApiFallback: true, /* support for react-router  */
 		contentBase: [
-			path.resolve('dist'),
+			path.resolve('public'),
 			path.resolve('assets'),
 		],
 		proxy: {

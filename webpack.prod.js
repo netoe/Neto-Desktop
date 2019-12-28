@@ -8,6 +8,7 @@ module.exports = merge(common, {
 	mode: 'production',
 	// Enable sourcemaps for debugging webpack's output.
 	devtool: 'source-map',
+	// [ ] Make the HTML-things fulfilled and deployed automatically by apps.
 	entry: {
 		...common.entry,
 		core: './src/core/main.ts',
@@ -26,10 +27,6 @@ module.exports = merge(common, {
 				},
 			},
 		},
-	},
-	devServer: {
-		historyApiFallback: true, /* support for react-router  */
-		contentBase: './dist',
 	},
 	plugins: [
 		new Webpack.DefinePlugin({
