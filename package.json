@@ -4,6 +4,7 @@
   "description": "Generic types are designed to reduce the codes duplications.",
   "main": "index.js",
   "scripts": {
+    "archive": "bash prepare-to-deploy.sh | tee -a logs/archieve_`date +%Y-%m-%d`.txt",
     "build": "webpack --config webpack.prod.js | tee -a logs/build-production_`date +%Y-%m-%d`.txt",
     "start": "webpack-dev-server --open --config webpack.dev.js --port 5678 --hot --host 0.0.0.0",
     "test": "echo \"Error: no test specified\" && exit 1"
