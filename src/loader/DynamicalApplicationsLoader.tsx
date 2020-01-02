@@ -1,7 +1,7 @@
 // The loader to load dynamical applications into the real dom.
 
 import React from 'react';
-import {useDerivedStateFromProps} from '../graphic/mui-lib/hooks/useDerivedStateFromProps';
+import {useDerivedStateFromProps} from 'src/mui-lib/hooks/useDerivedStateFromProps';
 import {IDynamicalApp, INavApp} from './TypedAppsLoader';
 
 interface IProps {

@@ -1,8 +1,8 @@
 'use strict';
 
 import React from 'react';
-import {ContextLanguageProvider, DEFAULT_LANGUAGE_CONTEXT_VALUE} from 'src/graphic/mui-lib/hooks/useLanguage';
-import {AppHome} from './graphic/AppHome/AppHome';
+import {ContextLanguageProvider, DEFAULT_LANGUAGE_CONTEXT_VALUE} from 'src/mui-lib/hooks/useLanguage';
+import {AppHome} from './demo/AppHome/AppHome';
 
 // App entrance: a single page without router.
 export const App = React.memo(() => {

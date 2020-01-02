@@ -4,3 +4,6 @@
 [submodule "src/demo"]
 	path = src/demo
 	url = https://github.com/netoe/Neto-Demo.git
+[submodule "src/mui-lib"]
+	path = src/mui-lib
+	url = https://github.com/zhanbei/mui-lib.git

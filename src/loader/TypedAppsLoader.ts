@@ -1,8 +1,8 @@
 //
 
+import {IUnLanguages} from 'src/mui-lib/resources/languages';
+import {ExtendedFetcherManager} from 'src/graphic/helpers/ExtendedFetcherManager';
 import {IBuiltinApplication} from './BuiltinApplications';
-import {ExtendedFetcherManager} from '../graphic/helpers/ExtendedFetcherManager';
-import {IUnLanguages} from '../graphic/mui-lib/resources/languages';
 
 // The definition for sidebar navigator applications.
 export interface INavApp extends IUnLanguages {
