@@ -1,19 +1,22 @@
 // The loader to load dynamical applications into the real dom.
 
 import React from 'react';
-import {DynamicalApplications} from '../graphic/applications/DynamicalApplicationsImporter';
+import {useDerivedStateFromProps} from '../graphic/mui-lib/hooks/useDerivedStateFromProps';
 import {IDynamicalApp, INavApp} from './TypedAppsLoader';
 
 interface IProps {
+	pages: IDynamicalApp[];
 	page?: INavApp;
 }
 
-const _loader = new Map<string, IDynamicalApp>();
-DynamicalApplications.map(app => _loader.set(app.id, app));
-
-export const DynamicalApplicationsLoader = React.memo<IProps>(({page}) => {
+export const DynamicalApplicationsLoader = React.memo(({pages, page}: IProps) => {
 	const [code, doRefresh] = React.useState(1);
-	const app = page ? _loader.get(page.id) || DynamicalApplications[0] : DynamicalApplications[0];
+	const [_loader] = useDerivedStateFromProps((): Map<string, IDynamicalApp> => {
+		const _loader = new Map<string, IDynamicalApp>();
+		pages.map(app => _loader.set(app.id, app));
+		return _loader;
+	}, [pages]);
+	const app = page ? _loader.get(page.id) || pages[0] : pages[0];
 	console.log('DynamicalApplicationsLoader#refreshed:', code);
 	if (!app) {return (<div>Error, Unexpected App ID.</div>);}
 	const fetcher = app.status;
