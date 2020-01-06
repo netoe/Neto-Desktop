@@ -2,23 +2,32 @@
 
 import React from 'react';
 import {useDerivedStateFromProps} from 'src/mui-lib/hooks/useDerivedStateFromProps';
-import {IDynamicalApp, INavApp} from './TypedAppsLoader';
+import {ISidebarApp, INavApp} from './TypedAppsLoader';
 
 interface IProps {
-	pages: IDynamicalApp[];
+	pages: ISidebarApp[];
 	page?: INavApp;
 }
 
 export const DynamicalApplicationsLoader = React.memo(({pages, page}: IProps) => {
 	const [code, doRefresh] = React.useState(1);
-	const [_loader] = useDerivedStateFromProps((): Map<string, IDynamicalApp> => {
-		const _loader = new Map<string, IDynamicalApp>();
+	const [_loader] = useDerivedStateFromProps((): Map<string, ISidebarApp> => {
+		const _loader = new Map<string, ISidebarApp>();
 		pages.map(app => _loader.set(app.id, app));
 		return _loader;
 	}, [pages]);
 	const app = page ? _loader.get(page.id) || pages[0] : pages[0];
 	console.log('DynamicalApplicationsLoader#refreshed:', code);
 	if (!app) {return (<div>Error, Unexpected App ID.</div>);}
+	if ('FunCom' in app) {
+		// Render a builtin application.
+		const BuiltinComponent = app.FunCom;
+		return (
+			<div style={{height: '100%'}}>
+				<BuiltinComponent/>
+			</div>
+		);
+	}
 	const fetcher = app.status;
 	if (fetcher.isInitialState()) {
 		// Trigger to fetch the remote component.

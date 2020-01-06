@@ -1,8 +1,9 @@
 //
 
+import React from 'react';
 import {IBuiltinApplication} from './BuiltinApplications';
 import {ExtendedFetcherManager} from '../graphic/helpers/ExtendedFetcherManager';
-import {IDynamicalApp} from './TypedAppsLoader';
+import {IBuiltinApp, IDynamicalApp} from './TypedAppsLoader';
 
 // Load dynamical applications and cache.
 //
@@ -29,5 +30,14 @@ export const newDynamicalApp = (app: { icon: string, en: string, zh: string }, i
 		id: `app-${text.trim().toLowerCase()}`,
 		...app, text: app.en,
 		doImport, status,
+	};
+};
+
+export const newBuiltinApp = (app: { icon: string, en: string, zh: string }, mFunCom: React.FC): IBuiltinApp => {
+	const text = app.en;
+	return {
+		id: `app-${text.trim().toLowerCase()}`,
+		...app, text,
+		FunCom: mFunCom,
 	};
 };
