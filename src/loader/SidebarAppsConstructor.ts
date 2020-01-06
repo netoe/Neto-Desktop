@@ -1,9 +1,8 @@
 //
 
 import React from 'react';
-import {IBuiltinApplication} from './BuiltinApplications';
 import {ExtendedFetcherManager} from '../graphic/helpers/ExtendedFetcherManager';
-import {IBuiltinApp, IDynamicalApp} from './TypedAppsLoader';
+import {IAsyncModule, IBuiltinApp, IDynamicalApp} from './TypedSidebarApps';
 
 // Load dynamical applications and cache.
 //
@@ -15,9 +14,9 @@ import {IBuiltinApp, IDynamicalApp} from './TypedAppsLoader';
 // - Load dynamical applications separately.
 //
 // The definitions and importers of dynamical applications.
-export const newDynamicalApp = (app: { icon: string, en: string, zh: string }, importer: () => Promise<IBuiltinApplication>): IDynamicalApp => {
+export const newDynamicalApp = (app: { icon: string, en: string, zh: string }, importer: () => Promise<IAsyncModule>): IDynamicalApp => {
 	const text = app.en;
-	const status = new ExtendedFetcherManager<IBuiltinApplication>();
+	const status = new ExtendedFetcherManager<IAsyncModule>();
 	const doImport = () => importer().then(module => {
 		status.fetched(module);
 		console.log('Loaded module(%s):', text, module);

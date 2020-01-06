@@ -1,15 +1,15 @@
-// The loader to load dynamical applications into the real dom.
+// The loader to load sidebar applications into the real dom.
 
 import React from 'react';
 import {useDerivedStateFromProps} from 'src/mui-lib/hooks/useDerivedStateFromProps';
-import {ISidebarApp, INavApp} from './TypedAppsLoader';
+import {ISidebarApp, INavApp} from './TypedSidebarApps';
 
 interface IProps {
 	pages: ISidebarApp[];
 	page?: INavApp;
 }
 
-export const DynamicalApplicationsLoader = React.memo(({pages, page}: IProps) => {
+export const SidebarApplicationsLoader = React.memo(({pages, page}: IProps) => {
 	const [code, doRefresh] = React.useState(1);
 	const [_loader] = useDerivedStateFromProps((): Map<string, ISidebarApp> => {
 		const _loader = new Map<string, ISidebarApp>();
@@ -17,7 +17,7 @@ export const DynamicalApplicationsLoader = React.memo(({pages, page}: IProps) =>
 		return _loader;
 	}, [pages]);
 	const app = page ? _loader.get(page.id) || pages[0] : pages[0];
-	console.log('DynamicalApplicationsLoader#refreshed:', code);
+	console.log('SidebarApplicationsLoader#refreshed:', code);
 	if (!app) {return (<div>Error, Unexpected App ID.</div>);}
 	if ('FunCom' in app) {
 		// Render a builtin application.
