@@ -4,8 +4,8 @@
   "description": "Generic types are designed to reduce the codes duplications.",
   "main": "index.js",
   "scripts": {
-    "archive": "bash prepare-to-deploy.sh | tee -a logs/archieve_`date +%Y-%m-%d`.txt",
-    "build": "webpack --config webpack.prod.js | tee -a logs/build-production_`date +%Y-%m-%d`.txt",
+    "archive": "bash prepare-to-deploy.sh | tee -a loxal/logs/archive_`date +%Y-%m-%d`.txt",
+    "build": "webpack --config webpack.prod.js | tee -a loxal/logs/build-production_`date +%Y-%m-%d`.txt",
     "start": "webpack-dev-server --color --open --config webpack.dev.js --port 2345 --hot --host 0.0.0.0 | grep -v 'TS\\|src/zlib' | grep .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
