@@ -9,4 +9,7 @@
 	url = https://github.com/netoe/Neto-Graphics.git
 [submodule "src/demo"]
 	path = src/demo
-	url = https://github.com/netoe/Neto-Demo.git
+	url = https://github.com/netoll/Neto-Demo.git
+[submodule "src/utils"]
+	path = src/utils
+	url = https://github.com/zhanbei/js-utils.git
