@@ -13,6 +13,12 @@ const apps = {
 	infraTextTailor: './src/graphic/Infra-Tools/index.tsx',
 };
 
+const getDevApplication = (app) => {
+	const entry = {app: apps[app] || apps.app};
+	console.log(`Developing the ${JSON.stringify(entry)} app.`);
+	return entry;
+};
+
 const getApplicationsToBeBuilt = (env) => {
 	if (!env || env === 'all') {
 		console.log('Building All Available Applications:');
@@ -30,5 +36,6 @@ const getApplicationsToBeBuilt = (env) => {
 
 module.exports = {
 	apps,
+	getDevApplication,
 	getApplicationsToBeBuilt,
 };

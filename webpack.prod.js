@@ -9,7 +9,7 @@ module.exports = merge(common, {
 	// Enable sourcemaps for debugging webpack's output.
 	devtool: 'source-map',
 	// [ ] Make the HTML-things fulfilled and deployed automatically by apps.
-	optimization: {
+	optimization: process.env.SPLIT_NODE_MODULES ? {
 		splitChunks: {
 			// chunks: 'all',
 			cacheGroups: {
@@ -20,7 +20,7 @@ module.exports = merge(common, {
 				},
 			},
 		},
-	},
+	} : undefined,
 	plugins: [
 		new Webpack.DefinePlugin({
 			'__ENV__': JSON.stringify('prod'),
