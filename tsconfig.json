@@ -30,9 +30,9 @@
     "babelCore": "@babel/core"
   },
   "exclude": [
-    "node_modules",
     "build",
     "dist",
-    "neto"
+    "neto",
+    "node_modules"
   ]
 }

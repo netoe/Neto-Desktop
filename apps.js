@@ -1,10 +1,5 @@
 //
 
-// const prefix = './src';
-// const apps = {};
-// const df = (key, app) => apps[key] = prefix + app;
-// df('app', '/index.tsx');
-
 const apps = {
 	app: './src/index.tsx',
 	core: './src/core/main.ts',
