@@ -4,14 +4,15 @@ const path = require('path');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CheckerPlugin} = require('awesome-typescript-loader');
+const apps = require('./apps');
+
+const entry = apps.getApplicationsToBeBuilt(process.env.APPS);
 
 // @see https://www.typescriptlang.org/docs/handbook/react-&-webpack.html
 module.exports = {
 	// Don't attempt to continue if there are any errors.
 	bail: true,
-	entry: {
-		app: './src/index.tsx',
-	},
+	entry: entry,
 	output: {
 		filename: '[name].bundle.js',
 		chunkFilename: '[name].chunk.js',

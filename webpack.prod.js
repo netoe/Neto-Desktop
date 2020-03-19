@@ -9,13 +9,6 @@ module.exports = merge(common, {
 	// Enable sourcemaps for debugging webpack's output.
 	devtool: 'source-map',
 	// [ ] Make the HTML-things fulfilled and deployed automatically by apps.
-	entry: {
-		...common.entry,
-		core: './src/core/main.ts',
-		rap: './src/graphic/applications/AppReviewAndPlan.tsx',
-		netoDashboards: './src/graphic/Neto-Dashboards/index.tsx',
-		infraTextTailor: './src/graphic/Infra-Tools/index.tsx',
-	},
 	optimization: {
 		splitChunks: {
 			// chunks: 'all',
